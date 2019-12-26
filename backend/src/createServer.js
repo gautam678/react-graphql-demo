@@ -7,14 +7,14 @@ const db = require("./db");
 function createServer() {
   return new GraphQLServer({
     typeDefs: "src/schema.graphql",
-    resolvers: { Mutation, Query },
+    resolvers: {
+      Mutation,
+      Query
+    },
     resolverValidationOptions: {
       requireResolversForResolveType: false
     },
-    context: request => ({ ...request, db })
-    // endpoint: process.env.PRISMA_ENDPOINT,
-    // secret: process.env.PRISMA_SECRET,
-    // debug: false
+    context: req => ({ ...req, db })
   });
 }
 
